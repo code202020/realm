@@ -178,7 +178,7 @@ deploy_realm() {
     mkdir -p /root/realm
     cd /root/realm
 
-    _version=$(curl -s https://api.github.com/repos/zhboner/realm/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    _version=$(curl -s d.coder.date/https://api.github.com/repos/zhboner/realm/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
     if [ -z "$_version" ]; then
         echo "获取版本号失败，请检查本机能否链接 https://ghfast.top/https://api.github.com/repos/zhboner/realm/releases/latest"
@@ -400,7 +400,7 @@ update_realm() {
     echo "> 检测并更新 realm"
 
     current_version=$(/root/realm/realm --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-    tag_version=$(curl -Ls "https://api.github.com/repos/zhboner/realm/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    tag_version=$(curl -Ls "d.coder.date/https://api.github.com/repos/zhboner/realm/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
     if [[ -z "$tag_version" ]]; then
         echo -e "${red}获取 realm 版本失败，可能是由于 GitHub API 限制，请稍后再试${plain}"
